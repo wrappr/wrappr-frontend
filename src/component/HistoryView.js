@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
         position: "fixed",
         bottom: theme.spacing(4),
         right: theme.spacing(4),
-    }
+    },
 }));
 
 function HistoryView(props) {
@@ -29,7 +29,9 @@ function HistoryView(props) {
         <div className={classes.root}>
             <Grid container spacing={6} justify={"center"}>
                 {props.history.length === 0 ?
-                    <Typography className={classes.empty} variant={"h4"}>Your history is empty.</Typography> : null}
+                    <Paper className={classes.paper}><Grid container justify={"center"}><Typography variant={"body1"}>Hit the refresh button to
+                        fetch a new
+                        coupon.</Typography></Grid></Paper> : null}
                 {props.history.map(item =>
                     <Paper key={item.code} className={classes.paper}><Coupon coupon={item}/></Paper>
                 )}

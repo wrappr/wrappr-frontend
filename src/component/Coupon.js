@@ -24,21 +24,20 @@ export default function Coupon(props) {
             <div>
                 <Grid container justify={"center"}>
                     <Grid>
-                        {props.coupon.code ? <QRCode value={props.coupon.code} size={256}/> :
-                            <Typography variant={"body1"}>Hit the refresh button to fetch a new coupon.</Typography>}
-                        {props.coupon.code ?
-                            <Grid justify={"center"} container spacing={4}><Chip className={classes.chip}
-                                                                                 label={props.coupon.code}
-                                                                                 color={"primary"}/></Grid> : null}
+                        <QRCode value={props.coupon.code} size={256}/>
+                        <Grid justify={"center"} container spacing={4}>
+                            <Chip className={classes.chip} label={props.coupon.code} color={"primary"}/>
+                        </Grid>
                     </Grid>
                 </Grid>
                 <Divider variant={"middle"} className={classes.divider}/>
-                {props.coupon.code ? <CouponDownload coupon={props.coupon}/> : null}
+                <CouponDownload coupon={props.coupon}/>
             </div>
         );
     } else {
         return (
-            <Grid container justify={"center"}><Typography variant={"body1"}>Fetching a fresh coupon...</Typography></Grid>
+            <Grid container justify={"center"}><Typography variant={"body1"}>Hit the refresh button to fetch a new
+                coupon.</Typography></Grid>
         );
     }
 }

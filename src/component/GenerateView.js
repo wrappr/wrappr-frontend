@@ -19,9 +19,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function GenerateView(props) {
-    // eslint-disable-next-line
-    useEffect(() => props.dispatch(createCoupon()), []);
-
     const classes = useStyles();
 
     return (
