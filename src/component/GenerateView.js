@@ -26,9 +26,6 @@ function GenerateView(props) {
             <Paper className={classes.paper}>
                 <Coupon coupon={props.coupon}/>
             </Paper>
-            <Fade in={props.fetching}>
-                <CircularProgress className={classes.progress} hidden={!props.fetching}/>
-            </Fade>
         </div>
     );
 }
