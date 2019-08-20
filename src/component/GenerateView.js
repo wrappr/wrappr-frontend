@@ -2,12 +2,10 @@ import React, {useEffect} from 'react';
 import {makeStyles} from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Paper from "@material-ui/core/Paper";
-import {Snackbar} from "@material-ui/core";
 import Coupon from "./Coupon";
 import {connect} from "react-redux";
 import {createCoupon} from "../actions";
 import Fade from "@material-ui/core/Fade";
-import LinearProgress from "@material-ui/core/LinearProgress";
 
 const useStyles = makeStyles(theme => ({
     progress: {

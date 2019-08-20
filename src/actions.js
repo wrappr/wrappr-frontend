@@ -12,7 +12,7 @@ export const DISMISS_ERROR = createAction("DISMISS_ERROR");
 export const createCoupon = () => dispatch => {
     dispatch(CREATE_COUPON());
     dispatch(FETCH_START());
-    fetch("http://10.42.0.72:8000/fetch").catch(e => {
+    fetch(process.env.REACT_APP_API_URL).catch(e => {
         dispatch(FETCH_ERROR(e.message));
         return null;
     }).then(res => {

@@ -26,17 +26,20 @@ function ErrorBarrier(props) {
     const classes = useStyles();
 
     return (
-        <Dialog open={props.errorMessage}>
+        <Dialog open={props.errorMessage !== null}>
             <DialogTitle>Failed to fetch a coupon</DialogTitle>
             <DialogContent>
                 <DialogContentText>An error occurred while attempting to fetch a coupon for you. The backend might be
                     down.
-                    <Divider className={classes.divider}/>
-                    <code>Error: {props.errorMessage}</code></DialogContentText>
+                </DialogContentText>
+                <Divider className={classes.divider}/>
+                <DialogContentText><code>Error: {props.errorMessage}</code></DialogContentText>
             </DialogContent>
             <DialogActions>
-                <Button onClick={() => props.dispatch(createCoupon())} aria-label={"retry"} className={classes.button}>Retry</Button>
-                <Button onClick={() => props.dispatch(DISMISS_ERROR())} aria-label={"close"} className={classes.button} color={"primary"}>Close</Button>
+                <Button onClick={() => props.dispatch(createCoupon())} aria-label={"retry"}
+                        className={classes.button}>Retry</Button>
+                <Button onClick={() => props.dispatch(DISMISS_ERROR())} aria-label={"close"} className={classes.button}
+                        color={"primary"}>Close</Button>
             </DialogActions>
         </Dialog>
     );

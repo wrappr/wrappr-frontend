@@ -18,7 +18,6 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {createCoupon} from "../actions";
 import LinearProgress from "@material-ui/core/LinearProgress";
-import Paper from "@material-ui/core/Paper";
 import Fade from "@material-ui/core/Fade";
 
 const useStyles = makeStyles(theme => ({
