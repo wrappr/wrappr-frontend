@@ -12,13 +12,13 @@ import HistoryIcon from "@material-ui/icons/History"
 import HomeIcon from "@material-ui/icons/Home";
 import Divider from "@material-ui/core/Divider";
 import {CssBaseline} from "@material-ui/core";
-import Drawer from "@material-ui/core/Drawer";
 import Badge from "@material-ui/core/Badge";
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {createCoupon} from "../actions";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Fade from "@material-ui/core/Fade";
+import {SwipeableDrawer} from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -72,7 +72,7 @@ function AppHeader(props) {
                     </IconButton>
                 </Toolbar>
             </AppBar>
-            <Drawer open={state.drawerState}
+            <SwipeableDrawer open={state.drawerState}
                     onClose={() => setState({drawerState: false})}>
                 <nav className={classes.drawer} onClick={handleChange}>
                     <List>
@@ -92,7 +92,7 @@ function AppHeader(props) {
                         </ListItem>
                     </List>
                 </nav>
-            </Drawer>
+            </SwipeableDrawer>
             <Fade in={props.fetching}>
                 <LinearProgress hidden={!props.fetching}/>
             </Fade>

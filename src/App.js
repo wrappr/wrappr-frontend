@@ -20,10 +20,6 @@ function App() {
         refreshCounter: 0,
     });
 
-    const pushToHistory = item => setState({
-        history: state.history.concat([item])
-    });
-
     const handleRefresh = () => setState({
         refreshCounter: state.refreshCounter + 1
     });
@@ -35,8 +31,7 @@ function App() {
             <ErrorBarrier/>
             <Container className={classes.container}>
                 <Route exact path="/"
-                       render={(props) => <GenerateView {...props} pushToHistory={pushToHistory}
-                                                        refreshCounter={state.refreshCounter}/>}/>
+                       render={(props) => <GenerateView {...props} refreshCounter={state.refreshCounter}/>}/>
                 <Route path="/history"
                        render={(props) => <HistoryView {...props} history={state.history}/>}/>
             </Container>
