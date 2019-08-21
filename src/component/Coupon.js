@@ -8,7 +8,7 @@ import Chip from "@material-ui/core/Chip";
 
 const useStyles = makeStyles(theme => ({
     divider: {
-        marginTop: theme.spacing(3),
+        marginTop: theme.spacing(6),
         marginBottom: theme.spacing(3),
     },
     chip: {
