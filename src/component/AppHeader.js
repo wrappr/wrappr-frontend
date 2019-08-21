@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
         width: 'auto',
     },
     drawer: {
-        width: 300,
+        width: 200,
         flexShrink: 0,
     },
     title: {
