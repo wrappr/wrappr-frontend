@@ -6,7 +6,9 @@ import thunk from "redux-thunk";
 const initialState = {
     history: localStorage && localStorage.getItem("history") ? JSON.parse(localStorage.getItem("history")) : [],
     fetching: false,
-    errorMessage: null
+    errorMessage: null,
+    authenticated: false,
+    user: {},
 };
 
 export const reducer = handleActions({
@@ -17,6 +19,8 @@ export const reducer = handleActions({
     FETCH_ERROR: (state, action) => ({...state, fetching: false, errorMessage: action.payload}),
     DELETE_COUPON: (state, action) => ({...state, history: state.history.filter(n => n.code !== action.payload)}),
     DISMISS_ERROR: state => ({...state, errorMessage: null}),
+    AUTH_SUCCESS: (state, action) => ({...state, authenticated: true, user: action.payload}),
+    AUTH_ERROR: state => ({...state, authenticated: false}),
 }, initialState);
 
 const store = createStore(reducer, initialState, composeWithDevTools(applyMiddleware(thunk)));

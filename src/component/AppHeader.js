@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {makeStyles} from '@material-ui/core/styles';
 import Icon from '@material-ui/core/Icon';
 import IconButton from '@material-ui/core/IconButton';
@@ -13,12 +13,17 @@ import HomeIcon from "@material-ui/icons/Home";
 import Divider from "@material-ui/core/Divider";
 import {CssBaseline} from "@material-ui/core";
 import Badge from "@material-ui/core/Badge";
-import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {createCoupon} from "../actions";
+import {AUTH_ERROR, AUTH_SUCCESS, createCoupon} from "../actions";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Fade from "@material-ui/core/Fade";
 import {SwipeableDrawer} from "@material-ui/core";
+import * as firebase from "firebase";
+import AuthBarrier from "./AuthBarrier";
+import {Link} from "react-router-dom";
+import Avatar from "@material-ui/core/Avatar";
+import Tooltip from "@material-ui/core/Tooltip";
+import Paper from "@material-ui/core/Paper";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -42,6 +47,13 @@ const useStyles = makeStyles(theme => ({
     },
     title: {
         marginLeft: "auto",
+    },
+    bottom: {
+        anchor: "bottom"
+    },
+    avatarPaper: {
+        padding: theme.spacing(2),
+        width: "100%",
     }
 }));
 
@@ -52,6 +64,7 @@ function AppHeader(props) {
 
     const handleChange = () => setState({drawerState: !state.drawerState});
 
+    useEffect(() => firebase.auth().onAuthStateChanged(user => user ? props.dispatch(AUTH_SUCCESS(user)) : props.dispatch(AUTH_ERROR(user))), []);
 
     return (
         <div className={classes.root}>
@@ -72,8 +85,11 @@ function AppHeader(props) {
                     </IconButton>
                 </Toolbar>
             </AppBar>
+
+            <AuthBarrier/>
+
             <SwipeableDrawer open={state.drawerState}
-                    onClose={() => setState({drawerState: false})}>
+                             onClose={() => setState({drawerState: false})} onOpen={handleChange}>
                 <nav className={classes.drawer} onClick={handleChange}>
                     <List>
                         <ListItem button key="Home" component={Link} to="/">
@@ -90,6 +106,14 @@ function AppHeader(props) {
                             </ListItemIcon>
                             <ListItemText primary="History"/>
                         </ListItem>
+                        <Tooltip title={"Logout"} aria-label={"logout"} placement={"right"}>
+                            <ListItem button key={"Logout"} component={Link} to={"/logout"} className={classes.bottom}>
+                                <ListItemIcon>
+                                    <Avatar alt={props.user.displayName} src={props.user.photoURL}/>
+                                </ListItemIcon>
+                                <ListItemText primary={props.user.displayName}/>
+                            </ListItem>
+                        </Tooltip>
                     </List>
                 </nav>
             </SwipeableDrawer>
@@ -100,6 +124,6 @@ function AppHeader(props) {
     );
 }
 
-const mapStateToProps = state => ({historyCount: state.history.length, fetching: state.fetching});
+const mapStateToProps = state => ({historyCount: state.history.length, fetching: state.fetching, user: state.user});
 
 export default connect(mapStateToProps)(AppHeader);
