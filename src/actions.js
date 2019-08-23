@@ -24,12 +24,12 @@ export const createCoupon = () => (dispatch, getState) => {
             dispatch(FETCH_ERROR(e.message));
             return null;
         }).then(res => {
-            if (res.status === 200) {
+            if (res && res.status === 200) {
                 dispatch(DISMISS_ERROR());
                 dispatch(FETCH_FINISH());
                 return null;
             } else {
-                return res.json();
+                if (res) return res.json();
             }
         }).then(m => m && m.error ? dispatch(FETCH_ERROR(m.message)) : null));
 };
@@ -44,7 +44,7 @@ export const authSuccess = user => (dispatch, getState) => {
     firebase.database().ref("coupons/" + user.uid).on("value", snapshot => {
         dispatch(CLEAR_HISTORY());
         snapshot.forEach(data => {
-            let coupon = { ...data.val(), key: data.key };
+            let coupon = {...data.val(), key: data.key};
             dispatch(ADD_HISTORY(coupon));
         });
         dispatch(FETCH_FINISH());
