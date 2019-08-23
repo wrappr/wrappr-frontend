@@ -1,5 +1,5 @@
 import {createAction} from "redux-actions";
-import * as firebase from "firebase";
+import firebase, {Performance} from "./firebase";
 
 export const ADD_HISTORY = createAction("ADD_HISTORY");
 export const CLEAR_HISTORY = createAction("CLEAR_HISTORY");
@@ -15,6 +15,8 @@ export const AUTH_ERROR = createAction("AUTH_ERROR");
 export const createCoupon = () => (dispatch, getState) => {
     dispatch(CREATE_COUPON());
     dispatch(FETCH_START());
+    const perfTrace = Performance.trace("couponFetch");
+    perfTrace.start();
     getState().user.getIdToken(true).then(idToken =>
         fetch(process.env.REACT_APP_API_URL, {
             headers: {
@@ -27,6 +29,7 @@ export const createCoupon = () => (dispatch, getState) => {
             if (res && res.status === 200) {
                 dispatch(DISMISS_ERROR());
                 dispatch(FETCH_FINISH());
+                perfTrace.stop();
                 return null;
             } else {
                 if (res) return res.json();

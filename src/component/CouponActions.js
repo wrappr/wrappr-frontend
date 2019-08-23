@@ -83,8 +83,7 @@ function CouponActions(props) {
                             size="small"
                             aria-owns={open ? 'menu-list-grow' : undefined}
                             aria-haspopup="true"
-                            onClick={handleToggle}
-                        >
+                            onClick={handleToggle}>
                             <ArrowDropDownIcon/>
                         </Button>
                     </ButtonGroup>
@@ -94,8 +93,7 @@ function CouponActions(props) {
                                 {...TransitionProps}
                                 style={{
                                     transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom',
-                                }}
-                            >
+                                }}>
                                 <Paper id="menu-list-grow">
                                     <ClickAwayListener onClickAway={handleClose}>
                                         <MenuList>

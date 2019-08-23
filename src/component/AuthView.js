@@ -1,20 +1,12 @@
 import {connect} from "react-redux";
 import {StyledFirebaseAuth} from "react-firebaseui";
 import React from "react";
-import * as firebase from "firebase";
+import firebase from "../firebase";
+import "firebase/performance";
 import {makeStyles, Typography} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 
-const firebaseConfig = {
-    apiKey: "AIzaSyAjhJ5N8ztxaJDjjM_EHf2GGlwES_QLrTg",
-    authDomain: "gimmecock-d7199.firebaseapp.com",
-    databaseURL: "https://gimmecock-d7199.firebaseio.com",
-    projectId: "gimmecock-d7199",
-    storageBucket: "",
-    messagingSenderId: "158757001617",
-    appId: "1:158757001617:web:68c0fa723257bdb3"
-};
-firebase.initializeApp(firebaseConfig);
+export const PerformanceContext = React.createContext(firebase.performance());
 
 const uiConfig = {
     signInFlow: 'redirect',

@@ -7,7 +7,7 @@ import HistoryView from "./component/HistoryView";
 import Container from "@material-ui/core/Container";
 import {makeStyles} from "@material-ui/core/styles";
 import ErrorBarrier from "./component/ErrorBarrier";
-import AuthView from "./component/AuthView";
+import AuthView, {PerformanceContext} from "./component/AuthView";
 import * as firebase from "firebase";
 import {connect} from "react-redux";
 import AuthBarrier from "./component/AuthBarrier";
