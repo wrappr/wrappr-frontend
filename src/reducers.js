@@ -4,7 +4,7 @@ import {composeWithDevTools} from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
 const initialState = {
-    history: localStorage && localStorage.getItem("history") ? JSON.parse(localStorage.getItem("history")) : [],
+    history: [],
     fetching: false,
     errorMessage: null,
     authenticated: false,
@@ -12,7 +12,10 @@ const initialState = {
 };
 
 export const reducer = handleActions({
-    ADD_HISTORY: (state, action) => action.payload ? ({...state, history: state.history.concat(action.payload)}) : state,
+    ADD_HISTORY: (state, action) => action.payload ? ({
+        ...state,
+        history: state.history.concat(action.payload)
+    }) : state,
     FETCH_START: state => ({...state, fetching: true}),
     CLEAR_HISTORY: state => ({...state, history: []}),
     FETCH_FINISH: state => ({...state, fetching: false}),
@@ -24,11 +27,4 @@ export const reducer = handleActions({
 }, initialState);
 
 const store = createStore(reducer, initialState, composeWithDevTools(applyMiddleware(thunk)));
-
-store.subscribe(() => {
-    if (window.localStorage) {
-        localStorage.setItem("history", JSON.stringify(store.getState().history));
-    }
-});
-
 export const getStore = () => store;

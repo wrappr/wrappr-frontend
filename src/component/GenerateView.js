@@ -3,6 +3,8 @@ import {makeStyles} from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Coupon from "./Coupon";
 import {connect} from "react-redux";
+import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles(theme => ({
     progress: {
@@ -20,20 +22,20 @@ function GenerateView(props) {
 
     return (
         <div className={classes.root}>
-            <Paper className={classes.paper}>
-                <Coupon coupon={props.coupon}/>
-            </Paper>
+            {typeof props.coupon !== "undefined" && typeof props.coupon.code !== "undefined" ?
+                <Paper className={classes.paper}>
+                    <Coupon coupon={props.coupon}/>
+                </Paper>
+                : <Grid container justify={"center"}><Typography variant={"body1"}>Hit the refresh button to fetch a new
+                    coupon.</Typography></Grid>}
         </div>
     );
 }
 
-const mapStateToProps = state => {
-    return {
-        coupon: state.history[state.history.length - 1],
-        fetching: state.fetching,
-        errorMessage: state.errorMessage,
-    };
-};
 
 // redux
-export default connect(mapStateToProps)(GenerateView);
+export default connect(state => ({
+    coupon: state.history.slice(-1)[0],
+    fetching: state.fetching,
+    errorMessage: state.errorMessage,
+}))(GenerateView);

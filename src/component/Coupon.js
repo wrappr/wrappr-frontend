@@ -4,6 +4,7 @@ import {Typography, Grid, makeStyles} from "@material-ui/core";
 import CouponDownload from "./CouponDownload";
 import Divider from "@material-ui/core/Divider";
 import Chip from "@material-ui/core/Chip";
+import Paper from "@material-ui/core/Paper";
 
 
 const useStyles = makeStyles(theme => ({
@@ -17,27 +18,19 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Coupon(props) {
-
     const classes = useStyles();
-    if (props.coupon) {
-        return (
-            <div>
-                <Grid container justify={"center"}>
-                    <Grid>
-                        <QRCode value={props.coupon.code} size={256}/>
-                        <Grid justify={"center"} container spacing={4}>
-                            <Chip className={classes.chip} label={props.coupon.code} color={"primary"}/>
-                        </Grid>
+    return (
+        <div>
+            <Grid container justify={"center"}>
+                <Grid>
+                    <QRCode value={props.coupon.code} size={256}/>
+                    <Grid justify={"center"} container spacing={4}>
+                        <Chip className={classes.chip} label={props.coupon.code} color={"primary"}/>
                     </Grid>
                 </Grid>
-                <Divider variant={"middle"} className={classes.divider}/>
-                <CouponDownload coupon={props.coupon}/>
-            </div>
-        );
-    } else {
-        return (
-            <Grid container justify={"center"}><Typography variant={"body1"}>Hit the refresh button to fetch a new
-                coupon.</Typography></Grid>
-        );
-    }
+            </Grid>
+            <Divider variant={"middle"} className={classes.divider}/>
+            <CouponDownload coupon={props.coupon}/>
+        </div>
+    );
 }

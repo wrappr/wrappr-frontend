@@ -19,25 +19,16 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function App() {
-    const [state, setState] = useState({
-        history: [],
-        refreshCounter: 0,
-    });
-
-    const handleRefresh = () => setState({
-        refreshCounter: state.refreshCounter + 1
-    });
-
     const classes = useStyles();
     return (
         <Router className="App">
-            <AppHeader history={state.history} handleRefresh={handleRefresh}/>
+            <AppHeader/>
             <ErrorBarrier/>
             <Container className={classes.container}>
                 <Route exact path="/"
-                       render={(props) => <GenerateView {...props} refreshCounter={state.refreshCounter}/>}/>
+                       render={(props) => <GenerateView {...props}/>}/>
                 <Route path="/history"
-                       render={(props) => <HistoryView {...props} history={state.history}/>}/>
+                       render={(props) => <HistoryView {...props}/>}/>
                 <Route path="/login" component={AuthView}/>
                 <Route path="/logout" component={() => {
                     firebase.auth().signOut();

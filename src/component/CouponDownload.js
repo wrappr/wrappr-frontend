@@ -105,7 +105,7 @@ function CouponDownload(props) {
             <Grid item xs={1}/>
             <Grid xs={2} item align={"right"}>
                 <Fab className={classes.fab} size={"medium"} color={"default"}
-                     onClick={() => props.dispatch(deleteCoupon(props.coupon.code))}><DoneIcon/></Fab>
+                     onClick={() => props.dispatch(deleteCoupon(props.coupon))}><DoneIcon/></Fab>
             </Grid>
         </Grid>
     );

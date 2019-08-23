@@ -14,7 +14,7 @@ import Divider from "@material-ui/core/Divider";
 import {CssBaseline} from "@material-ui/core";
 import Badge from "@material-ui/core/Badge";
 import {connect} from "react-redux";
-import {AUTH_ERROR, AUTH_SUCCESS, createCoupon} from "../actions";
+import {AUTH_ERROR, AUTH_SUCCESS, authSuccess, createCoupon} from "../actions";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Fade from "@material-ui/core/Fade";
 import {SwipeableDrawer} from "@material-ui/core";
@@ -64,7 +64,7 @@ function AppHeader(props) {
 
     const handleChange = () => setState({drawerState: !state.drawerState});
 
-    useEffect(() => firebase.auth().onAuthStateChanged(user => user ? props.dispatch(AUTH_SUCCESS(user)) : props.dispatch(AUTH_ERROR(user))), []);
+    useEffect(() => firebase.auth().onAuthStateChanged(user => user ? props.dispatch(authSuccess(user)) : props.dispatch(AUTH_ERROR(user))), []);
 
     return (
         <div className={classes.root}>
