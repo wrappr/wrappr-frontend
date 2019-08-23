@@ -10,8 +10,8 @@ import {CLEAR_HISTORY} from "../actions";
 
 const useStyles = makeStyles(theme => ({
     paper: {
-        margin: theme.spacing(2),
-        padding: theme.spacing(4),
+        margin: theme.spacing(1),
+        padding: theme.spacing(2),
     },
     empty: {marginTop: theme.spacing(6)},
     fab: {
@@ -27,9 +27,10 @@ function HistoryView(props) {
 
     return (
         <div className={classes.root}>
-            <Grid container spacing={6} justify={"center"}>
+            <Grid spacing={4} justify={"center"}>
                 {props.history.length === 0 ?
-                    <Paper className={classes.paper}><Grid container justify={"center"}><Typography variant={"body1"}>Your history is empty.</Typography></Grid></Paper> : null}
+                    <Paper className={classes.paper}><Grid container justify={"center"}><Typography variant={"body1"}>Your
+                        history is empty.</Typography></Grid></Paper> : null}
                 {props.history.map(item =>
                     <Paper key={item.code} className={classes.paper}><Coupon coupon={item}/></Paper>
                 )}
