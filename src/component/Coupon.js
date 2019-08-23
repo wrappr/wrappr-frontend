@@ -1,7 +1,7 @@
 import React from "react";
 import QRCode from "qrcode.react";
 import {Typography, Grid, makeStyles} from "@material-ui/core";
-import CouponDownload from "./CouponDownload";
+import CouponDownload from "./CouponActions";
 import Divider from "@material-ui/core/Divider";
 import Chip from "@material-ui/core/Chip";
 import Paper from "@material-ui/core/Paper";
