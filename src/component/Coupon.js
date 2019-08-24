@@ -28,7 +28,7 @@ export default function Coupon(props) {
                     <Grid className={classes.dateChip} justify={"center"} container spacing={4}>
                         <Chip className={classes.chip}
                               label={new Date(Number.parseInt((props.coupon.valid_until * 1000).toString())).toDateString()}
-                              variant={"outlined"} color={"primary"}/>
+                              variant={"outlined"} color={"secondary"}/>
                     </Grid>
                     <QRCode value={props.coupon.code} size={256}/>
                     <Grid justify={"center"} container spacing={4}>
