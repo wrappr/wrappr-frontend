@@ -16,6 +16,13 @@ const useStyles = makeStyles(theme => ({
     },
     dateChip: {
         marginBottom: theme.spacing(4),
+    },
+    qr: {
+        height: 272,
+        width: 272,
+        padding: 16,
+        borderRadius: 4,
+        background: "#fff",
     }
 }));
 
@@ -30,7 +37,7 @@ export default function Coupon(props) {
                               label={new Date(Number.parseInt((props.coupon.valid_until * 1000).toString())).toDateString()}
                               variant={"outlined"} color={"secondary"}/>
                     </Grid>
-                    <QRCode value={props.coupon.code} size={256}/>
+                    <QRCode className={classes.qr} value={props.coupon.code} size={256}/>
                     <Grid justify={"center"} container spacing={4}>
                         <Chip className={classes.chip} label={props.coupon.code} color={"primary"}/>
                     </Grid>
