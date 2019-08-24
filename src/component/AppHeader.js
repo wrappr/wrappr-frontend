@@ -11,10 +11,10 @@ import ListItemText from "@material-ui/core/ListItemText";
 import HistoryIcon from "@material-ui/icons/History"
 import HomeIcon from "@material-ui/icons/Home";
 import Divider from "@material-ui/core/Divider";
-import {CssBaseline} from "@material-ui/core";
+import {CssBaseline, FormControlLabel, Switch} from "@material-ui/core";
 import Badge from "@material-ui/core/Badge";
 import {connect} from "react-redux";
-import {AUTH_ERROR, authSuccess, createCoupon} from "../actions";
+import {AUTH_ERROR, authSuccess, createCoupon, SWITCH_THEME} from "../actions";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Fade from "@material-ui/core/Fade";
 import {SwipeableDrawer} from "@material-ui/core";
@@ -96,9 +96,6 @@ function AppHeader(props) {
                             <ListItemIcon><HomeIcon/></ListItemIcon>
                             <ListItemText primary="Home"/>
                         </ListItem>
-                    </List>
-                    <Divider/>
-                    <List>
                         <ListItem button key="History" component={Link} to="/history">
                             <ListItemIcon>
                                 <Badge badgeContent={props.historyCount}
@@ -106,6 +103,15 @@ function AppHeader(props) {
                             </ListItemIcon>
                             <ListItemText primary="History"/>
                         </ListItem>
+                    </List>
+                    <Divider/>
+                    <List>
+                        <ListItem button key={"Dark"}>
+                            <FormControlLabel onChange={() => props.dispatch(SWITCH_THEME())} color={"primary"} checked={props.darkMode}  control={<Switch/>} label={"Dark mode"}/>
+                        </ListItem>
+                    </List>
+                    <Divider/>
+                    <List>
                         <Tooltip title={"Logout"} aria-label={"logout"} placement={"right"}>
                             <ListItem button key={"Logout"} component={Link} to={"/logout"} className={classes.bottom}>
                                 <ListItemIcon>
@@ -115,6 +121,7 @@ function AppHeader(props) {
                             </ListItem>
                         </Tooltip>
                     </List>
+                    <Divider/>
                 </nav>
             </SwipeableDrawer>
             <Fade in={props.fetching}>
@@ -124,6 +131,6 @@ function AppHeader(props) {
     );
 }
 
-const mapStateToProps = state => ({historyCount: state.history.length, fetching: state.fetching, user: state.user});
+const mapStateToProps = state => ({darkMode: state.darkMode, historyCount: state.history.length, fetching: state.fetching, user: state.user});
 
 export default connect(mapStateToProps)(AppHeader);

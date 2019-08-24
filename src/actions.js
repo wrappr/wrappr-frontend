@@ -11,6 +11,7 @@ export const DELETE_COUPON = createAction("DELETE_COUPON");
 export const DISMISS_ERROR = createAction("DISMISS_ERROR");
 export const AUTH_SUCCESS = createAction("AUTH_SUCCESS");
 export const AUTH_ERROR = createAction("AUTH_ERROR");
+export const SWITCH_THEME = createAction("SWITCH_THEME");
 
 export const createCoupon = () => (dispatch, getState) => {
     dispatch(CREATE_COUPON());

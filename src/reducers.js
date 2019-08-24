@@ -8,6 +8,7 @@ const initialState = {
     fetching: false,
     errorMessage: null,
     authenticated: false,
+    darkMode: false,
     user: {},
 };
 
@@ -24,6 +25,7 @@ export const reducer = handleActions({
     DISMISS_ERROR: state => ({...state, errorMessage: null}),
     AUTH_SUCCESS: (state, action) => ({...state, authenticated: true, user: action.payload}),
     AUTH_ERROR: state => ({...state, authenticated: false}),
+    SWITCH_THEME: state => ({...state, darkMode: !state.darkMode}),
 }, initialState);
 
 const store = createStore(reducer, initialState, composeWithDevTools(applyMiddleware(thunk)));
