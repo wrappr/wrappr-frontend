@@ -1,41 +1,12 @@
-import React from 'react';
-import './App.css';
-import AppHeader from "./component/AppHeader";
-import {Route, BrowserRouter as Router, Redirect} from "react-router-dom";
-import GenerateView from "./component/GenerateView";
-import HistoryView from "./component/HistoryView";
-import Container from "@material-ui/core/Container";
-import {makeStyles} from "@material-ui/core/styles";
-import ErrorBarrier from "./component/ErrorBarrier";
-import AuthView from "./component/AuthView";
-import firebase from "./firebase";
 import {connect} from "react-redux";
+import {createMuiTheme} from "@material-ui/core";
+import {ThemeProvider} from "@material-ui/styles";
+import React from "react";
+import AppRouter from "./AppRouter";
 
-const useStyles = makeStyles(theme => ({
-    container: {
-        marginTop: theme.spacing(4),
-    },
-}));
-
-function App() {
-    const classes = useStyles();
-    return (
-        <Router className="App">
-            <AppHeader/>
-            <ErrorBarrier/>
-            <Container className={classes.container}>
-                <Route exact path="/"
-                       render={(props) => <GenerateView {...props}/>}/>
-                <Route path="/history"
-                       render={(props) => <HistoryView {...props}/>}/>
-                <Route path="/login" component={AuthView}/>
-                <Route path="/logout" component={() => {
-                    firebase.auth().signOut();
-                    return (<Redirect to={"/login"}/>);
-                }}/>
-            </Container>
-        </Router>
-    );
+function App(props) {
+    const theme = createMuiTheme({palette: {type: props.darkMode ? "dark" : "light"}});
+    return (<ThemeProvider theme={theme}><AppRouter/></ThemeProvider>)
 }
 
-export default connect()(App);
+export default connect(state => ({darkMode: state.darkMode}))(App);
