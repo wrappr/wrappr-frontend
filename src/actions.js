@@ -17,24 +17,25 @@ export const createCoupon = () => (dispatch, getState) => {
     dispatch(FETCH_START());
     const perfTrace = Performance.trace("couponFetch");
     perfTrace.start();
-    getState().user.getIdToken(true).then(idToken =>
-        fetch(process.env.REACT_APP_API_URL, {
-            headers: {
-                Authorization: idToken,
-            }
-        }).catch(e => {
-            dispatch(FETCH_ERROR(e.message));
-            return null;
-        }).then(res => {
-            if (res && res.status === 200) {
-                dispatch(DISMISS_ERROR());
-                dispatch(FETCH_FINISH());
-                perfTrace.stop();
+    if (getState().user)
+        getState().user.getIdToken(true).then(idToken =>
+            fetch(process.env.REACT_APP_API_URL, {
+                headers: {
+                    Authorization: idToken,
+                }
+            }).catch(e => {
+                dispatch(FETCH_ERROR(e.message));
                 return null;
-            } else {
-                if (res) return res.json();
-            }
-        }).then(m => m && m.error ? dispatch(FETCH_ERROR(m.message)) : null));
+            }).then(res => {
+                if (res && res.status === 200) {
+                    dispatch(DISMISS_ERROR());
+                    dispatch(FETCH_FINISH());
+                    perfTrace.stop();
+                    return null;
+                } else {
+                    if (res) return res.json();
+                }
+            }).then(m => m && m.error ? dispatch(FETCH_ERROR(m.message)) : null));
 };
 
 export const deleteCoupon = coupon => (dispatch, getState) => {
