@@ -18,7 +18,7 @@ import {AUTH_ERROR, authSuccess, createCoupon} from "../actions";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Fade from "@material-ui/core/Fade";
 import {SwipeableDrawer} from "@material-ui/core";
-import * as firebase from "firebase";
+import firebase from "../firebase";
 import AuthBarrier from "./AuthBarrier";
 import {Link} from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";

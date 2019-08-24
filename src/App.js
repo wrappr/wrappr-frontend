@@ -8,7 +8,7 @@ import Container from "@material-ui/core/Container";
 import {makeStyles} from "@material-ui/core/styles";
 import ErrorBarrier from "./component/ErrorBarrier";
 import AuthView from "./component/AuthView";
-import * as firebase from "firebase";
+import firebase from "./firebase";
 import {connect} from "react-redux";
 
 const useStyles = makeStyles(theme => ({

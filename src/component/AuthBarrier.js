@@ -2,7 +2,7 @@ import {connect} from "react-redux";
 import {Redirect, withRouter} from "react-router-dom";
 import React, {useState} from "react";
 import {Snackbar} from "@material-ui/core";
-import * as firebase from "firebase";
+import firebase from "../firebase";
 
 function AuthBarrier(props) {
     const [state, setState] = useState(true);

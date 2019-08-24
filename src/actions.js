@@ -48,8 +48,6 @@ export const deleteCoupon = coupon => (dispatch, getState) => {
 export const authSuccess = user => (dispatch, getState) => {
     dispatch(AUTH_SUCCESS(user));
     dispatch(FETCH_START());
-    const perfTrace = Performance.trace("couponSync");
-    perfTrace.start();
     firebase.database().ref("coupons/" + user.uid).on("value", snapshot => {
         dispatch(CLEAR_HISTORY());
         snapshot.forEach(data => {
@@ -57,6 +55,5 @@ export const authSuccess = user => (dispatch, getState) => {
             dispatch(ADD_HISTORY(coupon));
         });
         dispatch(FETCH_FINISH());
-        perfTrace.stop();
     });
 };
