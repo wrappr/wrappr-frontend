@@ -1,10 +1,9 @@
 import React from "react";
 import QRCode from "qrcode.react";
-import {Typography, Grid, makeStyles} from "@material-ui/core";
+import {Grid, makeStyles} from "@material-ui/core";
 import CouponDownload from "./CouponActions";
 import Divider from "@material-ui/core/Divider";
 import Chip from "@material-ui/core/Chip";
-import Paper from "@material-ui/core/Paper";
 
 
 const useStyles = makeStyles(theme => ({
@@ -28,8 +27,8 @@ export default function Coupon(props) {
                 <Grid>
                     <Grid className={classes.dateChip} justify={"center"} container spacing={4}>
                         <Chip className={classes.chip}
-                              label={new Date(Number.parseInt(props.coupon.valid_until * 1000)).toDateString()}
-                              variant={"outlined"} color={"inherit"}/>
+                              label={new Date(Number.parseInt((props.coupon.valid_until * 1000).toString())).toDateString()}
+                              variant={"outlined"} color={"primary"}/>
                     </Grid>
                     <QRCode value={props.coupon.code} size={256}/>
                     <Grid justify={"center"} container spacing={4}>

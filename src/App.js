@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
 import AppHeader from "./component/AppHeader";
 import {Route, BrowserRouter as Router, Redirect} from "react-router-dom";
@@ -7,10 +7,9 @@ import HistoryView from "./component/HistoryView";
 import Container from "@material-ui/core/Container";
 import {makeStyles} from "@material-ui/core/styles";
 import ErrorBarrier from "./component/ErrorBarrier";
-import AuthView, {PerformanceContext} from "./component/AuthView";
+import AuthView from "./component/AuthView";
 import * as firebase from "firebase";
 import {connect} from "react-redux";
-import AuthBarrier from "./component/AuthBarrier";
 
 const useStyles = makeStyles(theme => ({
     container: {

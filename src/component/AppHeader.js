@@ -14,7 +14,7 @@ import Divider from "@material-ui/core/Divider";
 import {CssBaseline} from "@material-ui/core";
 import Badge from "@material-ui/core/Badge";
 import {connect} from "react-redux";
-import {AUTH_ERROR, AUTH_SUCCESS, authSuccess, createCoupon} from "../actions";
+import {AUTH_ERROR, authSuccess, createCoupon} from "../actions";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Fade from "@material-ui/core/Fade";
 import {SwipeableDrawer} from "@material-ui/core";
@@ -23,7 +23,6 @@ import AuthBarrier from "./AuthBarrier";
 import {Link} from "react-router-dom";
 import Avatar from "@material-ui/core/Avatar";
 import Tooltip from "@material-ui/core/Tooltip";
-import Paper from "@material-ui/core/Paper";
 
 const useStyles = makeStyles(theme => ({
     root: {
