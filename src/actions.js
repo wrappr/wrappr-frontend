@@ -18,7 +18,7 @@ export const createCoupon = () => (dispatch, getState) => {
     dispatch(FETCH_START());
     const perfTrace = Performance.trace("couponFetch");
     perfTrace.start();
-    if (getState().user)
+    if (typeof getState().user.getIdToken === "function")
         getState().user.getIdToken(true).then(idToken =>
             fetch(process.env.REACT_APP_API_URL, {
                 headers: {
