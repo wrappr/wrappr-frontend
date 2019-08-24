@@ -23,11 +23,9 @@ const useStyles = makeStyles(theme => ({
 
 function HistoryView(props) {
     const classes = useStyles();
-
-
     return (
         <div className={classes.root}>
-            <Grid spacing={4} justify={"center"}>
+            <Grid>
                 {props.history.length === 0 ?
                     <Paper className={classes.paper}><Grid container justify={"center"}><Typography variant={"body1"}>Your
                         history is empty.</Typography></Grid></Paper> : null}

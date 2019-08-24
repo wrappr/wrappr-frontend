@@ -63,6 +63,7 @@ function AppHeader(props) {
 
     const handleChange = () => setState({drawerState: !state.drawerState});
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => firebase.auth().onAuthStateChanged(user => user ? props.dispatch(authSuccess(user)) : props.dispatch(AUTH_ERROR(user))), []);
 
     return (
