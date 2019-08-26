@@ -14,7 +14,7 @@ import Divider from "@material-ui/core/Divider";
 import {CssBaseline, FormControlLabel, Switch} from "@material-ui/core";
 import Badge from "@material-ui/core/Badge";
 import {connect} from "react-redux";
-import {AUTH_ERROR, authSuccess, createCoupon, SWITCH_THEME} from "../actions";
+import {AUTH_ERROR, authSuccess, createCoupon, switchTheme, syncSettings} from "../actions";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Fade from "@material-ui/core/Fade";
 import {SwipeableDrawer} from "@material-ui/core";
@@ -65,6 +65,8 @@ function AppHeader(props) {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => firebase.auth().onAuthStateChanged(user => user ? props.dispatch(authSuccess(user)) : props.dispatch(AUTH_ERROR(user))), []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(() => props.dispatch(syncSettings()), []);
 
     return (
         <div className={classes.root}>
@@ -107,7 +109,13 @@ function AppHeader(props) {
                     <Divider/>
                     <List>
                         <ListItem button key={"Dark"}>
-                            <FormControlLabel onChange={() => props.dispatch(SWITCH_THEME())} color={"primary"} checked={props.darkMode}  control={<Switch/>} label={"Dark mode"}/>
+                            <FormControlLabel control={
+                                <Switch
+                                    checked={props.darkMode || false}
+                                    onChange={() => props.dispatch(switchTheme())}
+                                    value="Dark mode"
+                                    color={"primary"}/>
+                            } label={"Dark mode"}/>
                         </ListItem>
                     </List>
                     <Divider/>

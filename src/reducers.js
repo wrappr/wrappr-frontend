@@ -25,6 +25,7 @@ export const reducer = handleActions({
     DISMISS_ERROR: state => ({...state, errorMessage: null}),
     AUTH_SUCCESS: (state, action) => ({...state, authenticated: true, user: action.payload}),
     AUTH_ERROR: state => ({...state, authenticated: false}),
+    SET_THEME: (state, action) => ({...state, darkMode: action.payload}),
     SWITCH_THEME: state => ({...state, darkMode: !state.darkMode}),
 }, initialState);
 

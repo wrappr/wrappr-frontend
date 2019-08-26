@@ -22,31 +22,22 @@ function AppRouter() {
     const classes = useStyles();
 
 
-    const theme = createMuiTheme({
-        palette: {
-            type: "dark",
-        }
-    });
-
-
     return (
-        <ThemeProvider theme={theme}>
-            <Router className="App">
-                <AppHeader/>
-                <ErrorBarrier/>
-                <Container className={classes.container}>
-                    <Route exact path="/"
-                           render={(props) => <GenerateView {...props}/>}/>
-                    <Route path="/history"
-                           render={(props) => <HistoryView {...props}/>}/>
-                    <Route path="/login" component={AuthView}/>
-                    <Route path="/logout" component={() => {
-                        firebase.auth().signOut();
-                        return (<Redirect to={"/login"}/>);
-                    }}/>
-                </Container>
-            </Router>
-        </ThemeProvider>
+        <Router className="App">
+            <AppHeader/>
+            <ErrorBarrier/>
+            <Container className={classes.container}>
+                <Route exact path="/"
+                       render={(props) => <GenerateView {...props}/>}/>
+                <Route path="/history"
+                       render={(props) => <HistoryView {...props}/>}/>
+                <Route path="/login" component={AuthView}/>
+                <Route path="/logout" component={() => {
+                    firebase.auth().signOut();
+                    return (<Redirect to={"/login"}/>);
+                }}/>
+            </Container>
+        </Router>
     );
 }
 

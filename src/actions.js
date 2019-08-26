@@ -12,6 +12,7 @@ export const DISMISS_ERROR = createAction("DISMISS_ERROR");
 export const AUTH_SUCCESS = createAction("AUTH_SUCCESS");
 export const AUTH_ERROR = createAction("AUTH_ERROR");
 export const SWITCH_THEME = createAction("SWITCH_THEME");
+export const SET_THEME = createAction("SET_THEME");
 
 export const createCoupon = () => (dispatch, getState) => {
     dispatch(CREATE_COUPON());
@@ -57,4 +58,15 @@ export const authSuccess = user => (dispatch, getState) => {
         });
         dispatch(FETCH_FINISH());
     });
+};
+
+export const syncSettings = () => (dispatch, getState) => {
+    if (window.localStorage)
+        dispatch(SET_THEME(JSON.parse(localStorage.getItem("darkMode"))));
+};
+
+export const switchTheme = () => (dispatch, getState) => {
+    dispatch(SWITCH_THEME());
+    if (window.localStorage)
+        localStorage.setItem("darkMode", JSON.stringify(getState().darkMode));
 };
