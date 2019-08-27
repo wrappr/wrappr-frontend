@@ -1,6 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/auth";
-import "firebase/database";
+import "firebase/firestore";
 import "firebase/performance";
 
 const firebaseConfig = {
@@ -14,5 +14,6 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 export const Performance = firebase.performance();
+export const db = firebase.firestore();
 
 export default firebase;

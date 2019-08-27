@@ -27,6 +27,7 @@ export const reducer = handleActions({
     AUTH_ERROR: state => ({...state, authenticated: false}),
     SET_THEME: (state, action) => ({...state, darkMode: action.payload}),
     SWITCH_THEME: state => ({...state, darkMode: !state.darkMode}),
+    SET_HISTORY: (state, action) => ({...state, history: action.payload}),
 }, initialState);
 
 const store = createStore(reducer, initialState, composeWithDevTools(applyMiddleware(thunk)));

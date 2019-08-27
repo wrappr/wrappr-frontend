@@ -1,5 +1,5 @@
 import {createAction} from "redux-actions";
-import firebase, {Performance} from "./firebase";
+import firebase, {db, Performance} from "./firebase";
 
 export const ADD_HISTORY = createAction("ADD_HISTORY");
 export const CLEAR_HISTORY = createAction("CLEAR_HISTORY");
@@ -13,6 +13,7 @@ export const AUTH_SUCCESS = createAction("AUTH_SUCCESS");
 export const AUTH_ERROR = createAction("AUTH_ERROR");
 export const SWITCH_THEME = createAction("SWITCH_THEME");
 export const SET_THEME = createAction("SET_THEME");
+export const SET_HISTORY = createAction("SET_HISTORY");
 
 export const createCoupon = () => (dispatch, getState) => {
     dispatch(CREATE_COUPON());
@@ -43,19 +44,16 @@ export const createCoupon = () => (dispatch, getState) => {
 export const deleteCoupon = coupon => (dispatch, getState) => {
     const perfTrace = Performance.trace("couponDelete");
     perfTrace.start();
-    firebase.database().ref("coupons/" + getState().user.uid + "/" + coupon.key).remove(() => dispatch(DELETE_COUPON(coupon.code))).then(() => getState().history.length === 0 ? dispatch(createCoupon()) : null);
+    db.collection("coupons").doc(getState().user.uid).update({coupons: firebase.firestore.FieldValue.arrayRemove(coupon)}).then(() => dispatch(DELETE_COUPON(coupon)));
     perfTrace.stop();
 };
 
 export const authSuccess = user => (dispatch, getState) => {
     dispatch(AUTH_SUCCESS(user));
     dispatch(FETCH_START());
-    firebase.database().ref("coupons/" + user.uid).on("value", snapshot => {
-        dispatch(CLEAR_HISTORY());
-        snapshot.forEach(data => {
-            let coupon = {...data.val(), key: data.key};
-            dispatch(ADD_HISTORY(coupon));
-        });
+    db.collection("coupons").doc(user.uid).onSnapshot(doc => {
+        dispatch(FETCH_START());
+        dispatch(SET_HISTORY(doc.data().coupons));
         dispatch(FETCH_FINISH());
     });
 };

@@ -4,12 +4,11 @@ import {Route, BrowserRouter as Router, Redirect} from "react-router-dom";
 import GenerateView from "./component/GenerateView";
 import HistoryView from "./component/HistoryView";
 import Container from "@material-ui/core/Container";
-import {createMuiTheme, makeStyles} from "@material-ui/core/styles";
+import {makeStyles} from "@material-ui/core/styles";
 import ErrorBarrier from "./component/ErrorBarrier";
 import AuthView from "./component/AuthView";
 import firebase from "./firebase";
 import {connect} from "react-redux";
-import ThemeProvider from "@material-ui/styles/ThemeProvider/ThemeProvider";
 
 const useStyles = makeStyles(theme => ({
     container: {
