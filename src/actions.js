@@ -53,7 +53,8 @@ export const authSuccess = user => (dispatch, getState) => {
     dispatch(FETCH_START());
     db.collection("coupons").doc(user.uid).onSnapshot(doc => {
         dispatch(FETCH_START());
-        dispatch(SET_HISTORY(doc.data().coupons));
+        if (doc.exists)
+            dispatch(SET_HISTORY(doc.data().coupons));
         dispatch(FETCH_FINISH());
     });
 };
