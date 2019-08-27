@@ -14,6 +14,11 @@ const firebaseConfig = {
 };
 firebase.initializeApp(firebaseConfig);
 export const Performance = firebase.performance();
+
+firebase.firestore().enablePersistence().catch(err => {
+    if (err.code === "failed-precondition")
+        console.log("Offline caching only available in one tab!")
+});
 export const db = firebase.firestore();
 
 export default firebase;
