@@ -123,11 +123,11 @@ function AppHeader(props) {
                         <Tooltip title={"Logout"} aria-label={"logout"} placement={"right"}>
                             <ListItem button key={"Logout"} component={Link} to={"/logout"} className={classes.bottom}>
                                 <ListItemIcon>
-                                    <Avatar alt={props.user.displayName} src={props.user.photoURL}/>
+                                    <Badge badgeContent={props.statisticsCount}>
+                                        <Avatar alt={props.user.displayName} src={props.user.photoURL}/>
+                                    </Badge>
                                 </ListItemIcon>
-                                <Badge badgeContent={props.statisticsCount}>
-                                    <ListItemText primary={props.user.displayName}/>
-                                </Badge>
+                                <ListItemText primary={props.user.displayName}/>
                             </ListItem>
                         </Tooltip>
                     </List>
@@ -141,6 +141,6 @@ function AppHeader(props) {
     );
 }
 
-const mapStateToProps = state => ({darkMode: state.darkMode, historyCount: state.history.length, fetching: state.fetching, user: state.user});
+const mapStateToProps = state => ({darkMode: state.darkMode, historyCount: state.history.length, fetching: state.fetching, user: state.user, statisticsCount: state.statisticsCount});
 
 export default connect(mapStateToProps)(AppHeader);
