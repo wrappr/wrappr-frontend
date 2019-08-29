@@ -52,9 +52,9 @@ export const deleteCoupon = coupon => (dispatch, getState) => {
 
 export const authSuccess = user => (dispatch, getState) => {
     dispatch(AUTH_SUCCESS(user));
-    Sentry.configureScope(scope => scope.setUser({"email": user.email, "username": user.username, "id": user.uid, "name": user.displayName}));
+    Sentry.configureScope(scope => scope.setUser({"email": user.email, "id": user.uid, "name": user.displayName}));
     dispatch(FETCH_START());
-    db.collection("statistics").doc(user.uid).onSnapshot(doc => doc.exists() ? dispatch(SET_COUNTER(doc.data().counter)) : null);
+    db.collection("statistics").doc(user.uid).onSnapshot(doc => doc.exists ? dispatch(SET_COUNTER(doc.data().counter)) : null);
     db.collection("coupons").doc(user.uid).onSnapshot(doc => {
         dispatch(FETCH_START());
         if (doc.exists)
