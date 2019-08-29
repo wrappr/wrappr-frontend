@@ -11,6 +11,7 @@ export const FETCH_ERROR = createAction("FETCH_ERROR");
 export const DELETE_COUPON = createAction("DELETE_COUPON");
 export const DISMISS_ERROR = createAction("DISMISS_ERROR");
 export const AUTH_SUCCESS = createAction("AUTH_SUCCESS");
+export const SET_COUNTER = createAction("SET_COUNTER");
 export const AUTH_ERROR = createAction("AUTH_ERROR");
 export const SWITCH_THEME = createAction("SWITCH_THEME");
 export const SET_THEME = createAction("SET_THEME");
@@ -53,6 +54,7 @@ export const authSuccess = user => (dispatch, getState) => {
     dispatch(AUTH_SUCCESS(user));
     Sentry.configureScope(scope => scope.setUser({"email": user.email, "username": user.username, "id": user.uid, "name": user.displayName}));
     dispatch(FETCH_START());
+    db.collection("statistics").doc(user.uid).onSnapshot(doc => doc.exists() ? dispatch(SET_COUNTER(doc.data().counter)) : null);
     db.collection("coupons").doc(user.uid).onSnapshot(doc => {
         dispatch(FETCH_START());
         if (doc.exists)

@@ -9,6 +9,7 @@ const initialState = {
     errorMessage: null,
     authenticated: false,
     darkMode: false,
+    statisticsCount: 0,
     user: {},
 };
 
@@ -27,6 +28,7 @@ export const reducer = handleActions({
     AUTH_ERROR: state => ({...state, authenticated: false}),
     SET_THEME: (state, action) => ({...state, darkMode: action.payload}),
     SWITCH_THEME: state => ({...state, darkMode: !state.darkMode}),
+    SET_COUNTER: (state, action) => ({...state, statisticsCount: action.payload}),
     SET_HISTORY: (state, action) => ({...state, history: action.payload}),
 }, initialState);
 

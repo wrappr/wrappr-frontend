@@ -125,7 +125,9 @@ function AppHeader(props) {
                                 <ListItemIcon>
                                     <Avatar alt={props.user.displayName} src={props.user.photoURL}/>
                                 </ListItemIcon>
-                                <ListItemText primary={props.user.displayName}/>
+                                <Badge badgeContent={props.statisticsCount}>
+                                    <ListItemText primary={props.user.displayName}/>
+                                </Badge>
                             </ListItem>
                         </Tooltip>
                     </List>
