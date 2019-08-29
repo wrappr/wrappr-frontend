@@ -1,5 +1,6 @@
 import {createAction} from "redux-actions";
 import firebase, {db, Performance} from "./firebase";
+import * as Sentry from '@sentry/browser';
 
 export const ADD_HISTORY = createAction("ADD_HISTORY");
 export const CLEAR_HISTORY = createAction("CLEAR_HISTORY");
@@ -50,6 +51,7 @@ export const deleteCoupon = coupon => (dispatch, getState) => {
 
 export const authSuccess = user => (dispatch, getState) => {
     dispatch(AUTH_SUCCESS(user));
+    Sentry.configureScope(scope => scope.setUser({"email": user.email, "username": user.username, "id": user.uid, "name": user.displayName}));
     dispatch(FETCH_START());
     db.collection("coupons").doc(user.uid).onSnapshot(doc => {
         dispatch(FETCH_START());
