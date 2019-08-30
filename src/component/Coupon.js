@@ -4,7 +4,7 @@ import {Grid, makeStyles} from "@material-ui/core";
 import CouponDownload from "./CouponActions";
 import Divider from "@material-ui/core/Divider";
 import Chip from "@material-ui/core/Chip";
-
+import moment from "moment";
 
 const useStyles = makeStyles(theme => ({
     divider: {
@@ -34,7 +34,7 @@ export default function Coupon(props) {
                 <Grid>
                     <Grid className={classes.dateChip} justify={"center"} container spacing={4}>
                         <Chip className={classes.chip}
-                              label={new Date(Number.parseInt((props.coupon.valid_until * 1000).toString())).toDateString()}
+                              label={moment(props.coupon.valid_until).format("ddd, DD MMMM hh:mm")}
                               variant={"outlined"} color={"secondary"}/>
                     </Grid>
                     <QRCode className={classes.qr} value={props.coupon.code} size={256}/>
