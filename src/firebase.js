@@ -19,6 +19,14 @@ firebase.firestore().enablePersistence({synchronizeTabs: true}).catch(err => {
     if (err.code === "failed-precondition")
         console.log("Offline caching only available in one tab!")
 });
+
+// Fuck you, iOS.
+window.onerror = e => {
+    if (e.indexOf("An internal error was encountered in the Indexed Database server") >= 0)
+        window.location.reload();
+};
+
+
 export const db = firebase.firestore();
 
 export default firebase;
