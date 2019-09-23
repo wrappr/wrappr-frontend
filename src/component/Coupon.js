@@ -34,7 +34,7 @@ export default function Coupon(props) {
                 <Grid>
                     <Grid className={classes.dateChip} justify={"center"} container spacing={4}>
                         <Chip className={classes.chip}
-                              label={moment(props.coupon.valid_until).format("ddd, DD MMMM hh:mm")}
+                              label={moment.unix(props.coupon.valid_until).format("ddd, DD MMMM hh:mm")}
                               variant={"outlined"} color={"secondary"}/>
                     </Grid>
                     <QRCode className={classes.qr} value={props.coupon.code} size={256}/>
