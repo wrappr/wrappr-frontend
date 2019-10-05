@@ -4,14 +4,16 @@ import "firebase/firestore";
 import "firebase/performance";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyAjhJ5N8ztxaJDjjM_EHf2GGlwES_QLrTg",
-    authDomain: "gimmecock-d7199.firebaseapp.com",
-    databaseURL: "https://gimmecock-d7199.firebaseio.com",
-    projectId: "gimmecock-d7199",
+    apiKey: "AIzaSyB9EBIlq6hiD3cIv1zCJKId3byp4xEqJoA",
+    authDomain: "wrapprai.firebaseapp.com",
+    databaseURL: "https://wrapprai.firebaseio.com",
+    projectId: "wrapprai",
     storageBucket: "",
-    messagingSenderId: "158757001617",
-    appId: "1:158757001617:web:68c0fa723257bdb3"
+    messagingSenderId: "900162097056",
+    appId: "1:900162097056:web:128bd525897e15fb10dec5",
+    measurementId: "G-P6WWQERRHG"
 };
+
 firebase.initializeApp(firebaseConfig);
 export const Performance = firebase.performance();
 

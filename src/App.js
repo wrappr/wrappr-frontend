@@ -3,13 +3,13 @@ import {createMuiTheme} from "@material-ui/core";
 import {ThemeProvider} from "@material-ui/styles";
 import React from "react";
 import AppRouter from "./AppRouter";
-import {orange, yellow} from "@material-ui/core/colors";
+import {green, indigo} from "@material-ui/core/colors";
 
 function App(props) {
     const theme = createMuiTheme({
         palette: {
-            primary: yellow,
-            secondary: orange,
+            primary: green,
+            secondary: indigo,
             type: props.darkMode ? "dark" : "light",
         }
     });

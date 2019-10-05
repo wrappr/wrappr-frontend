@@ -1,14 +1,13 @@
 import React from 'react';
 import AppHeader from "./component/AppHeader";
 import {Route, BrowserRouter as Router, Redirect} from "react-router-dom";
-import GenerateView from "./component/GenerateView";
-import HistoryView from "./component/HistoryView";
 import Container from "@material-ui/core/Container";
 import {makeStyles} from "@material-ui/core/styles";
-import ErrorBarrier from "./component/ErrorBarrier";
 import AuthView from "./component/AuthView";
 import firebase from "./firebase";
 import {connect} from "react-redux";
+import SettingsView from "./component/SettingsView";
+import ScanView from "./component/ScanView";
 
 const useStyles = makeStyles(theme => ({
     container: {
@@ -24,12 +23,11 @@ function AppRouter() {
     return (
         <Router className="App">
             <AppHeader/>
-            <ErrorBarrier/>
             <Container className={classes.container}>
                 <Route exact path="/"
-                       render={(props) => <GenerateView {...props}/>}/>
-                <Route path="/history"
-                       render={(props) => <HistoryView {...props}/>}/>
+                       render={(props) => <ScanView {...props}/>}/>
+                <Route path="/settings"
+                       render={(props) => <SettingsView {...props}/>}/>
                 <Route path="/login" component={AuthView}/>
                 <Route path="/logout" component={() => {
                     firebase.auth().signOut();

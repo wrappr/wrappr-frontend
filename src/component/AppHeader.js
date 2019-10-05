@@ -8,13 +8,13 @@ import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import HistoryIcon from "@material-ui/icons/History"
-import HomeIcon from "@material-ui/icons/Home";
+import SettingsIcon from "@material-ui/icons/Settings"
+import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
 import Divider from "@material-ui/core/Divider";
 import {CssBaseline, FormControlLabel, Switch} from "@material-ui/core";
 import Badge from "@material-ui/core/Badge";
 import {connect} from "react-redux";
-import {AUTH_ERROR, authSuccess, createCoupon, switchTheme, syncSettings} from "../actions";
+import {AUTH_ERROR, authSuccess, switchTheme, syncSettings} from "../actions";
 import LinearProgress from "@material-ui/core/LinearProgress";
 import Fade from "@material-ui/core/Fade";
 import {SwipeableDrawer} from "@material-ui/core";
@@ -46,6 +46,7 @@ const useStyles = makeStyles(theme => ({
     },
     title: {
         marginLeft: "auto",
+        marginRight: "auto",
     },
     bottom: {
         anchor: "bottom"
@@ -78,13 +79,7 @@ function AppHeader(props) {
                         <Icon>menu</Icon>
                     </IconButton>
 
-                    <Icon className={classes.title}>local_drink</Icon>
-
-                    <IconButton onClick={() => props.dispatch(createCoupon())} color="inherit"
-                                className={classes.button}
-                                aria-label="Get a new QR Code">
-                        <Icon>refresh</Icon>
-                    </IconButton>
+                    <Icon className={classes.title}>eco</Icon>
                 </Toolbar>
             </AppBar>
 
@@ -94,16 +89,16 @@ function AppHeader(props) {
                              onClose={() => setState({drawerState: false})} onOpen={handleChange}>
                 <nav className={classes.drawer} onClick={handleChange}>
                     <List>
-                        <ListItem button key="Home" component={Link} to="/">
-                            <ListItemIcon><HomeIcon/></ListItemIcon>
-                            <ListItemText primary="Home"/>
+                        <ListItem button key="Scan" component={Link} to="/">
+                            <ListItemIcon><PhotoCameraIcon/></ListItemIcon>
+                            <ListItemText primary="Scan"/>
                         </ListItem>
-                        <ListItem button key="History" component={Link} to="/history">
+                        <ListItem button key="Settings" component={Link} to="/settings">
                             <ListItemIcon>
                                 <Badge badgeContent={props.historyCount}
-                                       color="primary"><HistoryIcon/></Badge>
+                                       color="primary"><SettingsIcon/></Badge>
                             </ListItemIcon>
-                            <ListItemText primary="History"/>
+                            <ListItemText primary="Settings"/>
                         </ListItem>
                     </List>
                     <Divider/>
@@ -141,6 +136,6 @@ function AppHeader(props) {
     );
 }
 
-const mapStateToProps = state => ({darkMode: state.darkMode, historyCount: state.history.length, fetching: state.fetching, user: state.user, statisticsCount: state.statisticsCount});
+const mapStateToProps = state => ({darkMode: state.darkMode, user: state.user});
 
 export default connect(mapStateToProps)(AppHeader);
