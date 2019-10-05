@@ -4,13 +4,10 @@ import {composeWithDevTools} from "redux-devtools-extension";
 import thunk from "redux-thunk";
 
 const initialState = {
-    history: [],
-    fetching: false,
-    errorMessage: null,
     authenticated: false,
     darkMode: false,
-    statisticsCount: 0,
     user: {},
+    streaming: false,
 };
 
 export const reducer = handleActions({
@@ -19,6 +16,7 @@ export const reducer = handleActions({
     SET_THEME: (state, action) => ({...state, darkMode: action.payload}),
     SWITCH_THEME: state => ({...state, darkMode: !state.darkMode}),
     UPLOAD_IMAGE: state => state,
+    START_STREAM: state => ({...state, streaming: true}),
 }, initialState);
 
 const store = createStore(reducer, initialState, composeWithDevTools(applyMiddleware(thunk)));

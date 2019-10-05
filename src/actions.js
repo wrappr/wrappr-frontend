@@ -5,6 +5,7 @@ export const AUTH_ERROR = createAction("AUTH_ERROR");
 export const SWITCH_THEME = createAction("SWITCH_THEME");
 export const SET_THEME = createAction("SET_THEME");
 export const UPLOAD_IMAGE = createAction("UPLOAD_IMAGE");
+export const START_STREAM = createAction("START_STREAM");
 
 export const authSuccess = user => (dispatch, getState) => {
     dispatch(AUTH_SUCCESS(user));
@@ -24,4 +25,8 @@ export const switchTheme = () => (dispatch, getState) => {
 export const uploadImage = image => (dispatch) => {
     // TODO: Upload image to backend
     dispatch(UPLOAD_IMAGE());
+};
+
+export const startStream = () => dispatch => {
+    dispatch(START_STREAM());
 };
