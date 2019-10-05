@@ -10,4 +10,4 @@ const store = getStore();
 
 ReactDOM.render(<Provider store={store}><App/></Provider>, document.getElementById('root'));
 
-serviceWorker.register();
+serviceWorker.unregister();
