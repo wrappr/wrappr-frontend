@@ -43,8 +43,8 @@ export default function LiveView() {
             <Grid container direction={"row"} justify={"center"} alignItems={"center"}>
                 <Webcam
                     audio={false}
-                    height='50%'
-                    width='50%'
+                    height='100%'
+                    width='100%'
                     ref={webcamRef}
                     screenshotFormat="image/jpeg"
                     videoConstraints={videoConstraints}
