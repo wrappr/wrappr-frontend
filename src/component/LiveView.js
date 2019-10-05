@@ -29,6 +29,7 @@ export default function LiveView() {
     const capture = React.useCallback(
         () => {
             const imageSrc = webcamRef.current.getScreenshot();
+            console.log(imageSrc);
         },
         [webcamRef]
     );
@@ -39,8 +40,6 @@ export default function LiveView() {
     };
     return (
         <div className={classes.root}>
-            <Typography variant={"h2"}>Live</Typography>
-            <Grid container direction={"row"} justify={"center"} alignItems={"center"}>
                 <Webcam
                     audio={false}
                     height='100%'
@@ -52,7 +51,6 @@ export default function LiveView() {
                 <Button onClick={capture} variant="contained" size={"large"} component="span" className={classes.button}>
                     Send Photo
                 </Button>
-            </Grid>
         </div>
     );
 }
