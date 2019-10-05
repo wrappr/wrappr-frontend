@@ -1,5 +1,3 @@
-# gimmecock
+# Wrappr
 
-This project is the frontend for gimmecock.
-
-gimmecock generates free coupons for McDonald's softdrinks/coffee.
+This project contains the frontend for the [Wrappr](https://github.com/wrappr/wrappr) project
