@@ -55,8 +55,8 @@ function LiveView(props) {
     const classes = useStyles();
 
     const videoConstraints = {
-        width: 1280,
-        height: 720,
+        width: 640,
+        height: 360,
         facingMode: "environment"
     };
 
@@ -101,8 +101,7 @@ function LiveView(props) {
                 </Box>
             </Grid>
         </div>
-    )
-        ;
+    );
 };
 
 export default connect(state => ({streaming: state.streaming}))(LiveView);
