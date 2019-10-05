@@ -50,6 +50,7 @@ function LiveView(props) {
         facingMode: "environment"
     };
 
+
     const webcamRef = React.useRef(null);
     const capture = React.useCallback(
         () => {
@@ -78,7 +79,7 @@ function LiveView(props) {
                         <Webcam
                             audio={false}
                             height='100%'
-                            width='100%'
+                            weight='100%'
                             ref={webcamRef}
                             screenshotFormat="image/jpeg"
                             videoConstraints={videoConstraints}
