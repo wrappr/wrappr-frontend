@@ -8,6 +8,8 @@ import Grid from "@material-ui/core/Grid";
 import Fade from '@material-ui/core/Fade';
 import {connect, mapStateToProps} from "react-redux";
 import {startStream} from "../actions";
+import Fab from '@material-ui/core/Fab';
+import DoneIcon from '@material-ui/icons/Done';
 import {duration} from "moment";
 
 const useStyles = makeStyles(theme => ({
@@ -36,6 +38,14 @@ const useStyles = makeStyles(theme => ({
         left: '50%',
         transform: 'translate(-50%, -50%)',
         color: 'white'
+    },
+    fab: {
+        margin: '0px',
+        top: 'auto',
+        right: '20px',
+        bottom: '20px',
+        left: 'auto',
+        position: 'fixed'
     }
 }));
 
@@ -67,6 +77,9 @@ function LiveView(props) {
 
     return (
         <div className={classes.root}>
+            <Fab color="primary" aria-label="add" className={classes.fab}>
+                <DoneIcon />
+            </Fab>
             <Grid container direction={"row"} justify={"center"} alignItems={"center"}>
                 <Box boxShadow={3}>
                     <div className={classes.wrapper} onClick={handleClick}>
