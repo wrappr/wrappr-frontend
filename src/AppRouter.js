@@ -8,6 +8,7 @@ import firebase from "./firebase";
 import {connect} from "react-redux";
 import SettingsView from "./component/SettingsView";
 import ScanView from "./component/ScanView";
+import LiveView from "./component/LiveView";
 
 const useStyles = makeStyles(theme => ({
     container: {
@@ -28,6 +29,8 @@ function AppRouter() {
                        render={(props) => <ScanView {...props}/>}/>
                 <Route path="/settings"
                        render={(props) => <SettingsView {...props}/>}/>
+                <Route path="/live"
+                       render={(props) => <LiveView {...props}/>}/>
                 <Route path="/login" component={AuthView}/>
                 <Route path="/logout" component={() => {
                     firebase.auth().signOut();

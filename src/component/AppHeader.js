@@ -10,6 +10,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import SettingsIcon from "@material-ui/icons/Settings"
 import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
+import VideoCamIcon from "@material-ui/icons/Videocam";
 import Divider from "@material-ui/core/Divider";
 import {CssBaseline, FormControlLabel, Switch} from "@material-ui/core";
 import Badge from "@material-ui/core/Badge";
@@ -92,6 +93,10 @@ function AppHeader(props) {
                         <ListItem button key="Scan" component={Link} to="/">
                             <ListItemIcon><PhotoCameraIcon/></ListItemIcon>
                             <ListItemText primary="Scan"/>
+                        </ListItem>
+                        <ListItem button key="Live" component={Link} to="/live">
+                            <ListItemIcon><VideoCamIcon/></ListItemIcon>
+                            <ListItemText primary="Live"/>
                         </ListItem>
                         <ListItem button key="Settings" component={Link} to="/settings">
                             <ListItemIcon>
