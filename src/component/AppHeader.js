@@ -9,7 +9,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import SettingsIcon from "@material-ui/icons/Settings"
-import PhotoCameraIcon from "@material-ui/icons/PhotoCamera";
+import HistoryIcon from "@material-ui/icons/History";
 import VideoCamIcon from "@material-ui/icons/Videocam";
 import Divider from "@material-ui/core/Divider";
 import {CssBaseline, FormControlLabel, Switch} from "@material-ui/core";
@@ -91,12 +91,12 @@ function AppHeader(props) {
                 <nav className={classes.drawer} onClick={handleChange}>
                     <List>
                         <ListItem button key="Scan" component={Link} to="/">
-                            <ListItemIcon><PhotoCameraIcon/></ListItemIcon>
-                            <ListItemText primary="Scan"/>
+                            <ListItemIcon><HistoryIcon/></ListItemIcon>
+                            <ListItemText primary="History"/>
                         </ListItem>
-                        <ListItem button key="Live" component={Link} to="/live">
+                        <ListItem button key="Live" component={Link} to="/capture">
                             <ListItemIcon><VideoCamIcon/></ListItemIcon>
-                            <ListItemText primary="Live"/>
+                            <ListItemText primary="Capture"/>
                         </ListItem>
                         <ListItem button key="Settings" component={Link} to="/settings">
                             <ListItemIcon>

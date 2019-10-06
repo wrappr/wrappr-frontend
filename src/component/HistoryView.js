@@ -13,24 +13,13 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default function ScanView() {
+export default function HistoryView() {
     const classes = useStyles();
 
     return (
         <div className={classes.root}>
-            <Typography variant={"h2"}>Scan</Typography>
+            <Typography variant={"h2"}>History</Typography>
             <Grid container direction={"row"} justify={"center"} alignItems={"center"}>
-                <input
-                    accept="image/*"
-                    className={classes.input}
-                    id="contained-button-file"
-                    type="file"
-                />
-                <label htmlFor="contained-button-file">
-                    <Button variant="contained" size={"large"} component="span" className={classes.button}>
-                        Upload
-                    </Button>
-                </label>
             </Grid>
         </div>
     );

@@ -7,7 +7,7 @@ import AuthView from "./component/AuthView";
 import firebase from "./firebase";
 import {connect} from "react-redux";
 import SettingsView from "./component/SettingsView";
-import ScanView from "./component/ScanView";
+import HistoryView from "./component/HistoryView";
 import LiveView from "./component/LiveView";
 
 const useStyles = makeStyles(theme => ({
@@ -26,10 +26,10 @@ function AppRouter() {
             <AppHeader/>
             <Container className={classes.container}>
                 <Route exact path="/"
-                       render={(props) => <ScanView {...props}/>}/>
+                       render={(props) => <HistoryView {...props}/>}/>
                 <Route path="/settings"
                        render={(props) => <SettingsView {...props}/>}/>
-                <Route path="/live"
+                <Route path="/capture"
                        render={(props) => <LiveView {...props}/>}/>
                 <Route path="/login" component={AuthView}/>
                 <Route path="/logout" component={() => {
