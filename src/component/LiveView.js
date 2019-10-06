@@ -6,11 +6,14 @@ import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Fade from '@material-ui/core/Fade';
+import TextField from '@material-ui/core/TextField';
 import {connect, mapStateToProps} from "react-redux";
-import {startStream} from "../actions";
+import {pushImage, startStream} from "../actions";
 import Fab from '@material-ui/core/Fab';
 import DoneIcon from '@material-ui/icons/Done';
+import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import {duration} from "moment";
+import CameraIcon from "@material-ui/icons/Camera";
 
 const useStyles = makeStyles(theme => ({
     input: {
@@ -39,7 +42,7 @@ const useStyles = makeStyles(theme => ({
         transform: 'translate(-50%, -50%)',
         color: 'white'
     },
-    fab: {
+    ButtonSubmit: {
         margin: '0px',
         top: 'auto',
         right: '20px',
@@ -65,28 +68,27 @@ function LiveView(props) {
     const capture = React.useCallback(
         () => {
             const imageSrc = webcamRef.current.getScreenshot();
-            console.log(imageSrc);
+            props.dispatch(pushImage(imageSrc));
         },
         [webcamRef]
     );
 
     const handleClick = () => {
         if (!props.streaming)
-            props.dispatch(startStream())
+            props.dispatch(startStream());
     };
 
     return (
         <div className={classes.root}>
-            <Fab color="primary" aria-label="add" className={classes.fab}>
-                <DoneIcon />
+            <Fab color="primary" aria-label="push" className={classes.ButtonSubmit} onClick={capture}>
+                <CameraIcon />
             </Fab>
             <Grid container direction={"row"} justify={"center"} alignItems={"center"}>
                 <Box boxShadow={3}>
                     <div className={classes.wrapper} onClick={handleClick}>
-                        <Fade in={!props.streaming} out={props.streaming} timeout={1500}>
+                        <Fade in={!props.streaming} timeout={1500}>
                             <div className={classes.grey}>
-                                <Typography variant={"h2"} align={'center'} className={classes.centered}>Touch to start
-                                    scanning!</Typography>
+                                <Typography variant={"h2"} align={'center'} className={classes.centered}>Touch to start!</Typography>
                             </div>
                         </Fade>
                         <Webcam
